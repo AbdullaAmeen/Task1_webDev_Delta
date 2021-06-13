@@ -63,9 +63,6 @@ const isSolved = (grid, gridqn) => {
 };
 
 const getRandomGrid = (size) => {
-  //let grid = [[1, 2, 3, 4], [5, 6, 7, 8], [9, 10, 11, 12], [13, 14, 15, 0]];
-  //let grid = [[1, 2, 3, 4], [1, 2, 3, 4], [1, 2, 3, 4], [1, 2, 3, 4]];
-  //let grid = [[1, 2, 3, 4, 5], [6, 1, 2, 3, 4], [5, 6, 1, 2, 3], [4, 5, 6, 1, 2], [3, 4, 5, 6, 0]];
   let grid = Array.from(Array(size), () => new Array(size));
   var k = 1;
   for (let i = 0; i < size; i++) {
@@ -79,7 +76,6 @@ const getRandomGrid = (size) => {
   if(size === 5){
   grid[size - 1][size - 1] = 0; }      
   // Shuffle
-  //let blankBox = new Box(3, 3);
   let blankBox = new Box(size-1, size-1, size-1);
   for (let i = 0; i < 1000; i++) {
     const randomNextdoorBox = blankBox.getRandomNextdoorBox();
@@ -87,7 +83,6 @@ const getRandomGrid = (size) => {
     blankBox = randomNextdoorBox;
   }
 
-  //if (isSolved(grid, gridqn)) return getRandomGrid(size);
   return grid;
 };
 
@@ -175,7 +170,6 @@ class Game {
         const buttonqn = document.createElement("button");
 
         console.log(gridqn[i][j]);
-        //button.textContent = grid[i][j] === 0 ? "" : grid[i][j].toString();
         buttonqn.style.background = gridqn[i][j] === 0 ? "#003333" : color_array[gridqn[i][j]];
         newGridQn.appendChild(buttonqn);
       }
@@ -193,7 +187,6 @@ class Game {
           button.addEventListener("click", this.handleClickBox(new Box(j, i)));
         }
         console.log(grid[i][j]);
-        //button.textContent = grid[i][j] === 0 ? "" : grid[i][j].toString();
         button.style.background = grid[i][j] === 0 ? "#444444" : color_array[grid[i][j]];
         newGrid.appendChild(button);
       }
