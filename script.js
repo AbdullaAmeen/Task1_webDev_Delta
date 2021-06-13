@@ -87,13 +87,13 @@ const getRandomGrid = (size) => {
 };
 
 class State {
-  constructor(gridqn, grid, move, time, status) {
+  constructor(gridqn, grid, move, time, status, score) {
     this.gridqn = gridqn;
     this.grid = grid;
     this.move = move;
     this.time = time;
     this.status = status;
-    this.score = 0;
+    this.score = score;
   }
 
   static ready() {
@@ -102,7 +102,8 @@ class State {
     [[0, 0, 0, 0, 0], [0, 0, 0, 0, 0], [0, 0, 0, 0, 0], [0, 0, 0, 0, 0], [0, 0, 0, 0, 0]],  
     0,
       0,
-      "ready"
+      "ready",
+      0
     );
   }
 
@@ -135,6 +136,7 @@ class Game {
 
   handleClickBox(box) {
     return function() {
+      
       const nextdoorBoxes = box.getNextdoorBoxes();
       const blankBox = nextdoorBoxes.find(
         nextdoorBox => this.state.grid[nextdoorBox.y][nextdoorBox.x] === 0
@@ -146,14 +148,14 @@ class Game {
           clearInterval(this.tickId);
           this.setState({
             status: "won",
-            score: (1/move)*20 + (1/time)*30,
+            score: 20 + Math.round((1/this.state.move)*1500 + (1/this.state.time)*1500),
             grid: newGrid,
             move: this.state.move + 1
           });
         } else {
           this.setState({
             grid: newGrid,
-            move: this.state.move + 1
+            move: this.state.move + 1,
           });
         }
       }
@@ -212,8 +214,9 @@ class Game {
     document.getElementById("time").textContent = `Time: ${time}`;
 
     // Render message
+    console.log(`You Win ! : ${score}`);
     if (status === "won") {
-      document.querySelector(".message").textContent = `You Win ! : ${score}`;
+      document.querySelector(".message").textContent = `You Win ! Score : ${score}`;
     } else {
       document.querySelector(".message").textContent = "";
     }
