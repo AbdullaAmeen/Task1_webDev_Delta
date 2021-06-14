@@ -50,7 +50,7 @@ const swapBoxes = (grid, box1, box2) => {
 };
 
 const isSolved = (grid, gridqn) => {
-  console.log("Check for grid match");
+  //console.log("Check for grid match");
   let isequal = true;
   for (let i = 0; i < 3; i++) {
     for (let j = 0; j < 3; j++) {
@@ -74,7 +74,7 @@ const getRandomGrid = (size) => {
     }
     
   }  
-  console.log(grid);
+  //console.log(grid);
   if(size === 5){
   grid[size - 1][size - 1] = 0; }      
   // Shuffle
@@ -166,7 +166,7 @@ class Game {
 
   render() {
     const { gridqn, grid, move, time, status , score } = this.state;
-    console.log("tick");
+    //console.log("tick");
     // Render Qn grid
     const newGridQn = document.createElement("div");
     newGridQn.className = "gridqn";
