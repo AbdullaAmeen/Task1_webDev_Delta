@@ -50,13 +50,14 @@ const swapBoxes = (grid, box1, box2) => {
 };
 
 const isSolved = (grid, gridqn) => {
+  console.log("Check for grid match");
   let isequal = true;
   for (let i = 0; i < 3; i++) {
     for (let j = 0; j < 3; j++) {
       if(grid[i+1][j+1] != gridqn[i][j])
         isequal = false;
     }
-    console.log("issolved");
+    
   }  
   
   return (isequal);
@@ -69,10 +70,11 @@ const getRandomGrid = (size) => {
     for (let j = 0; j < size; j++) {
       if(k>6){ k=1; }  
       grid[i][j] = k;
-      console.log(grid[i][j]);
       k++;
     }
+    
   }  
+  console.log(grid);
   if(size === 5){
   grid[size - 1][size - 1] = 0; }      
   // Shuffle
@@ -164,6 +166,7 @@ class Game {
 
   render() {
     const { gridqn, grid, move, time, status , score } = this.state;
+    console.log("tick");
     // Render Qn grid
     const newGridQn = document.createElement("div");
     newGridQn.className = "gridqn";
@@ -171,7 +174,6 @@ class Game {
       for (let j = 0; j < 3; j++) {
         const buttonqn = document.createElement("button");
 
-        console.log(gridqn[i][j]);
         buttonqn.style.background = gridqn[i][j] === 0 ? "#003333" : color_array[gridqn[i][j]];
         newGridQn.appendChild(buttonqn);
       }
@@ -188,7 +190,7 @@ class Game {
         if (status === "playing") {
           button.addEventListener("click", this.handleClickBox(new Box(j, i)));
         }
-        console.log(grid[i][j]);
+        //console.log(grid[i][j]);
         button.style.background = grid[i][j] === 0 ? "#444444" : color_array[grid[i][j]];
         newGrid.appendChild(button);
       }
@@ -214,7 +216,6 @@ class Game {
     document.getElementById("time").textContent = `Time: ${time}`;
 
     // Render message
-    console.log(`You Win ! : ${score}`);
     if (status === "won") {
       document.querySelector(".message").textContent = `You Win ! Score : ${score}`;
     } else {
