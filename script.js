@@ -1,4 +1,4 @@
-const color_array = ["#FFC09F" , "#FFEE93", "#FCF5C7", "#A0CED9", "#ADF7B6", "#746606"]
+const color_array = ["#32064A" , "#E56B1F", "#FCD02C" , "#E12B38", "#3EB650", "#3778C2"]
 
 
 class Box {
